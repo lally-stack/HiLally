@@ -1,0 +1,115 @@
+@import "variabili";
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    #ptAlpha {
+        display: flex;
+        flex-direction: column;
+        #ptAlt {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+            background-color: $color4;
+            height: 80px;
+        }
+        #ptInt {
+            ul {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+                list-style: none;
+                a {
+                    text-decoration: none;
+                    font-size: 20px;
+                    color: #000;
+                    &:hover {
+                        color: $color1;
+                        text-decoration: underline;
+            
+                    }
+                    
+                }
+            }
+        }
+        a {
+            text-align: center;
+            margin: 20px;
+            font-size: 20px;
+            color: #000;
+            &:hover {
+                color: $color1;
+    
+            }
+    
+        }
+    }
+
+    #ptBeta{
+        table {
+            width: 95%;
+            border-bottom: 1px solid $color2;
+            td {
+                width: 200px;
+                height: 30px;
+                border-right: 1px solid $color2;
+                padding: 10px;
+            }
+        }
+    }
+
+    #ptSigm {
+        h1 {
+            text-align: center;
+            margin: 20px;
+        }
+        table {
+            width: 95%;
+            border-bottom: 1px solid $color2;
+            margin-left: 30px;
+            td {
+                width: 200px;
+                height: 30px;
+                border-right: 1px solid $color2;
+                padding: 10px;
+            }
+        }
+
+        #mod {
+            display: flex;
+            flex-direction: column;
+            margin-top: 50px;
+            input {
+                width: 500px;
+                height: 100px;
+                margin: 10px;
+                padding: 8px 12px;
+
+            }
+            .button {
+                display: flex;
+                flex-direction: row;
+                margin-left: 10px;
+                button {
+                    width: 115px;
+                    padding: 5px 15px;
+                    margin: 20px 50px 20px 85px;
+                    border: none;
+                    border-radius: 5px;
+                    font-size: $font1;
+                    background-color: $color1;
+                    color: $color5;
+                    &:hover {
+                        background-color: $color2;
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+
+
+

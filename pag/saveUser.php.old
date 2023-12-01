@@ -1,0 +1,124 @@
+<?php
+// recupero dati
+$nome = ($_POST["nome"]);
+$cognome = ($_POST["cognome"]);
+$email = ($_POST["email"]);
+$telefono = ($_POST["telefono"]);
+$argomento = ($_POST["argomento"]);
+
+
+if (check() == true) {
+    inserisci_record();
+} else {
+    echo "<strong>Il form non è stato compilato correttamente!</strong>";
+}
+
+function check()
+{
+
+    if (isset($nome, $cognome, $email, $argomento, $telefono)) {
+
+        // validazione nome
+        if ((empty($nome) || !preg_match('/^[A-Za-z]+$/', $nome))) {
+            echo "Il campo <strong>nome </strong>non è compilato correttamente <br>";
+        } else {
+            return $nome = true;
+        }
+
+        // validazione cognome
+        if ((empty($cognome) || !preg_match('/^[A-Za-z]+$/', $cognome))) {
+            echo "Il campo <strong>cognome </strong>non è compilato correttamente <br>";
+        } else {
+            return $cognome = true;
+        }
+
+        // sanificazione e validazione email
+        $email = filter_var($email,  FILTER_SANITIZE_EMAIL);
+        if ((empty($email))) {
+            echo "Il campo <strong>email </strong>non è compilato correttamente <br>";
+        } else {
+            filter_var($email, FILTER_VALIDATE_EMAIL);
+            return $email = true;
+        }
+
+        // validazione argomento
+        if ($argomento !== null || $argomento = "") {
+            echo "Il campo <strong>argomento </strong>non è compilato correttamente <br>";
+        }
+
+        // validazione telefono
+        if ((empty($telefono) || !preg_match('/(^[0|3]{1}[0-9]{5,10}$)/', $telefono))) {
+            echo "Il campo <strong>telefono </strong>non è compilato correttamente <br>";
+        } else {
+            return $telefono = true;
+        }
+    }
+}
+
+
+function inserisci_record()
+{
+    if (check() == true) {
+        $nome = ($_POST["nome"]);
+        $cognome = ($_POST["cognome"]);
+        $email = ($_POST["email"]);
+        $argomento = ($_POST["argomento"]);
+        $telefono = ($_POST["telefono"]);
+        require('./dbConnect.php');
+        // prep query
+        $sql = "INSERT INTO richieste (nome, cognome, email, telefono, argomento, note) VALUES ('$nome', '$cognome', '$email', '$telefono', '$argomento', '$note')";
+        $result = mysqli_query($conn, $sql);
+        if ($result) {
+            echo "Inserimento nel database avvenuto con successo!";
+            printf("Il tuo id è %d.", mysqli_insert_id($conn));
+        } else {
+            echo "Inserimento dei dati non riuscito";
+        }
+    }
+}
+
+
+
+
+
+
+
+
+?>
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hi Lally - Modulo di Contatto</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;1,500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Welcome <?php echo $_POST["nome"] ?></h2>
+    <h3>Ecco i tuoi dati:</h3>
+    <ul>
+        <li>Nome: <?php echo $nome ?></li>
+        <li>Cognome: <?php echo $cognome ?></li>
+        <li>Email: <?php echo $email ?></li>
+        <li>Telefono: <?php echo $telefono ?></li>
+        <li>Argomento: <?php echo $argomento ?></li>
+        <li>Note: <?php echo $_POST["note"] ?></li>
+    </ul>
+    <p>Grazie per avermi contattato! <br>
+        Risponderò al più presto al tuo indirizzo email!<br>
+        <a href="./index.php">Torna alla homepage</a>
+    </p>
+
+    <a href="./index.php">Torna indietro</a>
+
+</body>

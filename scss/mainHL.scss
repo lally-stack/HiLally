@@ -1,0 +1,33 @@
+
+@import "variabili";
+* {
+    margin: 0;
+    padding: 0; 
+    box-sizing: border-box;
+     main {
+        #titolo {
+            color: $color2;
+        }
+        #TiTo {
+            text-shadow: 4px 6px #dcd7f1;
+        }
+        @import "intro";
+
+        #tu {
+            margin-left: 10px;
+            margin-top: 50px;
+            
+        } 
+        @import "skills";
+        @import "cosa";
+        #titPor {
+            margin: 20px;
+        }
+        @import "portfolio";
+        @import "form";
+
+    }
+
+    @import "footerHL"; 
+}
+
